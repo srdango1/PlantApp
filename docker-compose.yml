@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: plant-app-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: thingsboard
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - iot-network
+
+  thingsboard:
+    image: thingsboard/tb-postgres:3.6.2
+    container_name: plant-app-thingsboard
+    restart: always
+    ports:
+      - "9090:9090"
+      - "1883:1883"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/thingsboard
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres
+    volumes:
+      - thingsboard_data:/data
+    networks:
+      - iot-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: plant-app-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@plantapp.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - iot-network
+
+volumes:
+  postgres_data:
+  thingsboard_data:
+
+networks:
+  iot-network:
+    driver: bridge
