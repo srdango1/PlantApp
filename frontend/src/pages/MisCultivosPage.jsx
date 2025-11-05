@@ -1,5 +1,5 @@
 // src/pages/MisCultivosPage.jsx
-
+import { Link } from 'react-router-dom';
 import React from 'react';
 import DetailedCultivationCard from '../components/Mis Cultivos/DetailedCultivationCard';
 import Header from '../components/Header'; // Asegúrate de que la ruta sea correcta
@@ -53,6 +53,12 @@ function MisCultivosPage() {
                     <h1 className="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">
                         Mis Cultivos
                     </h1>
+                    <Link 
+                    to="/cultivos/nuevo"
+                    className="w-50 flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+                        <span className="material-symbols-outlined">add</span>
+                        <span>Añadir nuevo cultivo</span>
+                    </Link>
                 </div>
                 
                 {/* Contenedor de la Cuadrícula */}

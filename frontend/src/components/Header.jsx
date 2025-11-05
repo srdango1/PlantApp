@@ -25,7 +25,7 @@ function Header() {
       
       {/* Navegación */}
       <nav className="hidden md:flex items-center justify-center flex-1 gap-6">
-        <Link to="/Inicio" element={<Inicio/>}>Inicio</Link>
+        <Link to="/" element={<Inicio/>}>Inicio</Link>
         <Link to="/Cultivos" element={<MisCultivosPage/>}>Mis Cultivos</Link>
         <Link to="#" >Estadísticas</Link>
         <Link to="#" >Clima</Link>

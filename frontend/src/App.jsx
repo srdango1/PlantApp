@@ -3,8 +3,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// 2. Importaciones de tus componentes de Página
-import MisCultivosPage from './pages/MisCultivosPage'; // La nueva vista detallada
+// 2. Importaciones de componentes de Página
+import AgregarCultivo from './pages/AgregarCultivo'
+import MisCultivosPage from './pages/MisCultivosPage'; 
 import Inicio from './pages/Inicio';
 
 function App() {
@@ -12,17 +13,17 @@ function App() {
     // 3. Contenedor Raíz con Clases Globales
     <div className="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark relative flex min-h-screen w-full flex-col">
       
-      {/* 4. El Router envuelve todo el contenido navegable */}
+      {/* 4. El Router envuelve todo el contenido del header */}
       <Router>
         {/* 5. Definición de Rutas */}
         <Routes>
   
-          {/* RUTA DE INICIO (Puede ser tu vista de Dashboard/Estadísticas) */}
-          <Route path="/inicio" element={<Inicio />} /> 
+          {/* RUTA DE INICIO */}
+          <Route path="/" element={<Inicio />} /> 
           
           {/* RUTA DEL FLUJO PRINCIPAL: Mis Cultivos */}
           <Route path="/cultivos" element={<MisCultivosPage />} />
-          
+          <Route path='/cultivos/nuevo' element={<AgregarCultivo/>}/>
         </Routes>
       </Router>
       
